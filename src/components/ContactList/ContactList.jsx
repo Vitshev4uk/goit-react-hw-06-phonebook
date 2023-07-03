@@ -1,14 +1,19 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import css from 'components/ContactList/ContactList.module.css'
 import PropTypes from 'prop-types';
+import { deleteContact } from 'redux/contactsSlice';
 
-function ContactList(props) {
+function ContactList() {
 
-  const { filteredContacts, onContactDelete } = props;
+  const dispatch = useDispatch();
+
+   const contacts = useSelector(state => state.contacts);
+   console.log(contacts);
 
   return (
       <ul className={css.ContactList}>
-        {filteredContacts.map((contact, id) => {
+        {contacts.map((contact, id) => {
           return (
             <li className={css.ContactListItem} key={id}>
               <p className={css.Name}>
@@ -17,7 +22,9 @@ function ContactList(props) {
               <button
                 className={css.BtnSubmit}
                 onClick={() => {
-                  onContactDelete(contact.id);
+                  dispatch(
+                    deleteContact(contact)
+                  );
                 }}
               >
                 Delete

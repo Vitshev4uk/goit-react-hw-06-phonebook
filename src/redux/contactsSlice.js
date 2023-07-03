@@ -5,19 +5,18 @@ const contactsInitialState = [];
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
+  // initialState: [],
   reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      }
+    addContact(state, action) {
+      return [...state, action.payload];
     },
     deleteContact(state, action) {
-      const index = state.findIndex(contact => contact.name === action.payload);
-      state.splice(index, 1);
-    }
-  }
+      return state.filter(({ name }) => name !== action.payload.name);
+    },
+  },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
+export const addContact = contactsSlice.actions.addContact;
+export const deleteContact = contactsSlice.actions.deleteContact;
 
 export const contactsReducer = contactsSlice.reducer;
