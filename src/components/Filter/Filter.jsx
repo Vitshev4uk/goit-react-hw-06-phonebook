@@ -1,29 +1,37 @@
 import React from 'react';
-import css from 'components/Filter/Filter.module.css'
+import css from 'components/Filter/Filter.module.css';
 // import PropTypes from 'prop-types';
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterContacts } from 'redux/contactsSlice';
 
-function Filter(props) {
-  // const { filter, onFilterChange } = props;
-  const contacts = useSelector(state => state.contacts);
+function Filter() {
+  const contacts = useSelector(state => state.contacts.contacts);
   console.log(contacts);
+
+  const dispatch = useDispatch();
 
   const filterNameRef = useRef();
 
+  const handleInputValue = () => {
+    const filterValue = filterNameRef.current.value;
+    console.log(filterValue);
+
+    dispatch(filterContacts(filterValue));
+  };
+
   return (
-      <div className={css.FilterContainer}>
-        <p className={css.FindContactsText}>Find contacts by name</p>
-        <input
-          className={css.InputFilter}
-          type="text"
-          placeholder="filter"
-        //   onChange={onFilterChange}
-        // value={filter}
+    <div className={css.FilterContainer}>
+      <p className={css.FindContactsText}>Find contacts by name</p>
+      <input
+        className={css.InputFilter}
+        type="text"
+        placeholder="filter"
+        onChange={handleInputValue}
         ref={filterNameRef}
-        />
-      </div>
-    );
+      />
+    </div>
+  );
 }
 
 // Filter.propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from 'components/ContactForm/ContactForm.module.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { addContact } from 'redux/contactsSlice';
 import { useRef } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
@@ -9,7 +9,7 @@ import { nanoid } from '@reduxjs/toolkit';
 
 function ContactForm(props) {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.contacts);
 
   const contactNameRef = useRef();
   const contactNumberRef = useRef();
@@ -69,14 +69,14 @@ function ContactForm(props) {
   );
 }
 
-ContactForm.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-};
+// ContactForm.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     })
+//   ),
+// };
 
 export default ContactForm;
