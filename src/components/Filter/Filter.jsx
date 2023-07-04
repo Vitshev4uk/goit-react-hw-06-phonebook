@@ -2,11 +2,11 @@ import React from 'react';
 import css from 'components/Filter/Filter.module.css';
 // import PropTypes from 'prop-types';
 import { useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterContacts } from 'redux/contactsSlice';
 
 function Filter() {
-  const contacts = useSelector(state => state.contacts.contacts);
+  // const contacts = useSelector(state => state.contacts.contacts);
   // console.log(contacts);
 
   const dispatch = useDispatch();
