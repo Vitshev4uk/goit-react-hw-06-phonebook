@@ -7,7 +7,7 @@ import { filterContacts } from 'redux/contactsSlice';
 
 function Filter() {
   const contacts = useSelector(state => state.contacts.contacts);
-  console.log(contacts);
+  // console.log(contacts);
 
   const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ function Filter() {
 
   const handleInputValue = () => {
     const filterValue = filterNameRef.current.value;
-    console.log(filterValue);
+    // console.log(filterValue);
 
     dispatch(filterContacts(filterValue));
   };
